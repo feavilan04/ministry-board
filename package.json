@@ -1,0 +1,20 @@
+{
+  "name": "ministry-board",
+  "version": "1.0.0",
+  "description": "announcements board generator app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"testing\""
+  },
+  "repository": "https://github.com/feavilan04/ministry-board.git",
+  "keywords": [
+    "ministry",
+    "board",
+    "Electron"
+  ],
+  "author": "Felipe Avilan",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.4"
+  }
+}
