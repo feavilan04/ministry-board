@@ -4,7 +4,8 @@
   "description": "announcements board generator app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"testing\""
+    "test": "echo \"testing\"",
+    "start": "electron ."
   },
   "repository": "https://github.com/feavilan04/ministry-board.git",
   "keywords": [
