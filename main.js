@@ -1,15 +1,24 @@
 const {
     app,
-    BrowserWindow
+    BrowserWindow,
+    ipcMain
 } = require('electron')
+const fs = require("fs");
 const path = require('path')
 
+let win
+
 function createWindow() {
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+    win = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        minWidth: 500,
+        minHeight: 200,
+        acceptFirstMouse: true,
+        titleBarStyle: 'hidden',
+        frame: false,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'preload.js'),
         }
     })
 
@@ -27,6 +36,7 @@ app.whenReady().then(() => {
         }
     })
 })
+
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
