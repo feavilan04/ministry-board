@@ -105,3 +105,6 @@ dist
 
 #MacOS OS files
 .DS_Store
+
+# Ministry app datastore folder
+/data/*
