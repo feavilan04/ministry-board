@@ -6,6 +6,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/photon.min.css">
+  <link rel="stylesheet" href="css/ministry_board.css">
 
   <!-- Javascript -->
   <script src="js/renderer.js" charset="utf-8"></script>
@@ -16,10 +17,10 @@
 
     <!-- .toolbar-header sits at the top of your app -->
     <header class="toolbar toolbar-header">
-      <h1 class="title">Ministry Board</h1>
+      <h1 class="title" id="page-title">Ministry Board</h1>
       <div class="toolbar-actions">
         <div class="btn-group">
-          <button class="btn btn-default">
+          <button class="btn btn-default" onclick="goHome()">
             <span class="icon icon-home"></span>
           </button>
           <button class="btn btn-default">
@@ -50,33 +51,37 @@
     <!-- Your app's content goes inside .window-content -->
     <div class="window-content">
       <div class="pane-group">
-        <div class="pane pane-sm sidebar">
+        <div class="pane pane-sm sidebar" id="sidebar">
           <nav class="nav-group">
             <h5 class="nav-group-title">Options</h5>
-            <span class="nav-group-item active" onclick="console.log('done')">
+            <span class="nav-group-item active link" onclick="goHome()">
+              <span class="icon icon-home"></span>
+              Home
+            </span>
+            <span class="nav-group-item link" onclick="console.log('done')">
               <span class="icon icon-book-open"></span>
               Meetings
             </span>
-            <span class="nav-group-item">
+            <span class="nav-group-item link">
               <span class="icon icon-trash"></span>
               Cleaning
             </span>
-            <span class="nav-group-item">
+            <span class="nav-group-item link">
               <span class="icon icon-cc-by"></span>
               Attendants
             </span>
-            <span class="nav-group-item">
+            <span class="nav-group-item link">
               <span class="icon icon-briefcase"></span>
               Preaching
             </span>
-            <span class="nav-group-item">
+            <span class="nav-group-item link" onclick="navigateTo(this, 'data')">
               <span class="icon icon-database"></span>
               Manage data
             </span>
           </nav>
         </div>
 
-        <div class="pane">
+        <div class="pane" id="content">
           <div id="test"></div>
           <table class="table-striped">
             <thead>

@@ -1,0 +1,14 @@
+.link:hover{
+    cursor: pointer !important;
+    background-color: rgb(155, 153, 153) !important;
+    color: white;
+    background: rgb(155, 153, 153) !important;
+}
+
+.top-space {
+    margin-top: 1rem
+}
+
+.sidebar-center-button {
+    margin-left: 25%;
+}

@@ -24,7 +24,12 @@ contextBridge.exposeInMainWorld(
             }
         },
         find: (ds_name)=>{
-            
+            if(dbs.hasOwnProperty(ds_name)){
+                const records = dbs[ds_name].datastore.find({})
+                return records;
+            }else{
+                console.error(`${ds_name} datastore does not exist.`)
+            }
         },
         count: (ds_name)=>{
             if(dbs.hasOwnProperty(ds_name)){
