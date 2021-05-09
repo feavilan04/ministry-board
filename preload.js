@@ -1,6 +1,7 @@
 const {contextBridge} = require("electron");
 const dbs =require("./main/db/main.js")
 
+
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld(
@@ -23,10 +24,20 @@ contextBridge.exposeInMainWorld(
                 console.error(`${ds_name} datastore does not exist.`)
             }
         },
-        find: (ds_name)=>{
+        find: (ds_name, callback, filter=null)=>{
             if(dbs.hasOwnProperty(ds_name)){
-                const records = dbs[ds_name].datastore.find({})
-                return records;
+                if(filter==null){
+                    const records = dbs[ds_name].datastore.find({}, (err, records) =>{
+                        if(err) throw err;
+                        callback(records);
+                    })
+                }else{
+                    const records = dbs[ds_name].datastore.find(filter, (err, records) =>{
+                        if(err) throw err;
+                        callback(records);
+                    })
+                }
+                
             }else{
                 console.error(`${ds_name} datastore does not exist.`)
             }
