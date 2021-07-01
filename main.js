@@ -1,9 +1,7 @@
 const {
     app,
-    BrowserWindow,
-    ipcMain
+    BrowserWindow
 } = require('electron')
-const fs = require("fs");
 const path = require('path')
 
 let win
@@ -23,7 +21,6 @@ function createWindow() {
     })
 
     win.loadFile('index.html')
-
     win.openDevTools()
 }
 

@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="css/photon.min.css">
   <link rel="stylesheet" href="css/ministry_board.css">
 
-  <!-- Javascript -->
-  <script src="js/renderer.js" charset="utf-8"></script>
+  <!-- Security Policy refer https://www.electronjs.org/docs/tutorial/security#csp-meta-tag-->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-attr 'self'">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
       <h1 class="title" id="page-title">Ministry Board</h1>
       <div class="toolbar-actions">
         <div class="btn-group">
-          <button class="btn btn-default" onclick="goHome()">
+          <button class="btn btn-default home-panel-button">
             <span class="icon icon-home"></span>
           </button>
           <button class="btn btn-default">
@@ -54,27 +54,27 @@
         <div class="pane pane-sm sidebar" id="sidebar">
           <nav class="nav-group">
             <h5 class="nav-group-title">Options</h5>
-            <span class="nav-group-item active link" onclick="goHome()">
+            <span class="nav-group-item active link home-panel-button">
               <span class="icon icon-home"></span>
               Home
             </span>
-            <span class="nav-group-item link" onclick="console.log('done')">
+            <span class="nav-group-item link sidemenu-option">
               <span class="icon icon-book-open"></span>
               Meetings
             </span>
-            <span class="nav-group-item link">
+            <span class="nav-group-item link sidemenu-option">
               <span class="icon icon-trash"></span>
               Cleaning
             </span>
-            <span class="nav-group-item link">
+            <span class="nav-group-item link sidemenu-option">
               <span class="icon icon-cc-by"></span>
               Attendants
             </span>
-            <span class="nav-group-item link">
+            <span class="nav-group-item link sidemenu-option">
               <span class="icon icon-briefcase"></span>
               Preaching
             </span>
-            <span class="nav-group-item link" onclick="navigateTo(this, 'data')">
+            <span class="nav-group-item link sidemenu-option" menu-value="data">
               <span class="icon icon-database"></span>
               Manage data
             </span>
@@ -207,6 +207,10 @@
       </div>
     </div>
   </div>
+
+  <!-- Javascript -->
+  <script src="js/renderer.js" charset="utf-8"></script>
+  <script src="js/event_listeners.js" charset="utf-8"></script>
 </body>
 
 </html>
