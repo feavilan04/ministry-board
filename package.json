@@ -1,5 +1,6 @@
 {
   "name": "ministry-board",
+  "productName" : "Ministry Board",
   "version": "1.0.0",
   "description": "announcements board generator app",
   "main": "main.js",

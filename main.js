@@ -15,6 +15,7 @@ function createWindow() {
         acceptFirstMouse: true,
         titleBarStyle: 'hidden',
         frame: false,
+        title: "Ministry Board",
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
         }
@@ -22,10 +23,16 @@ function createWindow() {
 
     win.loadFile('index.html')
     win.openDevTools()
+    win.setTitle('Ministry Board')
 }
 
+app.name = 'Ministry Board'
+app.setAboutPanelOptions({
+    applicationName:'Ministry Board'
+});
 app.whenReady().then(() => {
     createWindow()
+    
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
