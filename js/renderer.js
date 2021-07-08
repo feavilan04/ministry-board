@@ -55,9 +55,28 @@ const displayPublisherForm = () => {
         .then(response => response.text())
         .then(data => {
             document.getElementById("publisher_content").innerHTML = data;
+            enable_publishers_form();
         });
     document.title = title
     document.getElementById("page-title").innerHTML = title
-
 }
 
+const check_publisher_form = () => {
+    const publisher_name = document.getElementById('input-publisher-name')
+    let status = {
+        status: 'OK'
+    }
+    if(publisher_name.value.trim() === '' || publisher_name.value === undefined){
+        status.status='ERROR';
+        status.fields=['input-publisher-name']
+    }
+    return status;
+}
+
+
+const showWarningData = (field_id) => {
+    const field = document.getElementById(field_id);
+    const warning_message = document.getElementById(field_id + '-warning')
+    field.classList.add("warning-field");
+    warning_message.removeAttribute("hidden");
+}   

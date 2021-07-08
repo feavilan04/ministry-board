@@ -16,3 +16,11 @@
 .padded-1 {
     padding: 2rem;
 }
+
+.warning {
+    color: red;
+}
+
+.warning-field {
+    border-color: red;
+}
