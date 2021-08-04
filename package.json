@@ -22,8 +22,10 @@
   "dependencies": {
     "ajv": "^8.6.0",
     "ajv-formats": "^2.1.0",
+    "epub": "^1.2.1",
     "nedb": "^1.8.0",
     "puppeteer": "^10.1.0",
-    "unzip": "^0.1.11"
+    "rtf-parse": "^0.1.0",
+    "unzipper": "^0.10.11"
   }
 }

@@ -1,13 +1,30 @@
 const {
     app,
-    BrowserWindow
+    BrowserWindow       
 } = require('electron')
 const path = require('path')
 const puppeteer = require('puppeteer');
+const fsp = require('fs/promises');
+const fs = require('fs');
+const unzipper = require('unzipper');
+const rtfParse = require('rtf-parse');
+//const epub = require('epub');
 
 (async (language, month) => {
-    console.log(path.join(__dirname))
-    const browser = await puppeteer.launch({ headless: false });
+    const data = await fsp.readdir(path.join(__dirname, 'files'))
+    console.log(data)
+    data.forEach(async (element) => {
+        try {
+            console.log(element);
+            fs.unlinkSync(path.join(__dirname, 'files', element))
+        }
+        catch (error) {
+            console.log("running cacth")
+            await fsp.rmdir(path.join(__dirname, 'files', element), {recursive: true})
+        }
+        
+    });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.setUserAgent(`Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4272.0 Safari/537.36`);
     await page.goto('https://www.jw.org/en/');
@@ -32,9 +49,25 @@ const puppeteer = require('puppeteer');
     await page.waitForTimeout(2000)
     await browser.close();
     console.log('finished');
+    const folder = await fsp.readdir(path.join(__dirname, 'files'))
+    folder.forEach(async (element) => {
+        const pipe=fs.createReadStream(path.join(__dirname, 'files', element)).pipe(unzipper.Extract({ path: path.join(__dirname, 'files', 'workbook') })).on('finish', async ()=>{
+            console.log("start searching")            
+            const workbook = await fsp.readdir(path.join(__dirname, 'files', 'workbook'))
+            workbook.forEach(async (element) => {
+                rtfParse.parseFile( path.join(__dirname, 'files', 'workbook', element) )
+                .then( doc => {
+                    const children=doc.getChildren()
+                    console.log(children.length)
+                } );
+            })
+        })
+    });
 })('Français', '09');
 
 let win
+
+
 
 function createWindow() {
     win = new BrowserWindow({
